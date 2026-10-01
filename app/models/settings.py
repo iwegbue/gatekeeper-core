@@ -23,7 +23,7 @@ class Settings(Base):
     anthropic_api_key: Mapped[str] = mapped_column(String, default="")
     openai_api_key: Mapped[str] = mapped_column(String, default="")
     ollama_base_url: Mapped[str] = mapped_column(String, default="")
-    ai_model: Mapped[str] = mapped_column(String(100), default="")  # e.g. "claude-sonnet-4-20250514", "gpt-4o"
+    ai_model: Mapped[str] = mapped_column(String(100), default="")  # e.g. "claude-sonnet-5", "gpt-4o"
 
     # Notifications — master toggle
     notifications_enabled: Mapped[bool] = mapped_column(Boolean, default=True)
