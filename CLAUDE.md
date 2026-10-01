@@ -264,10 +264,10 @@ Always implement both `upgrade()` and `downgrade()`.
 docker compose up -d
 # Visit http://localhost — you'll be redirected to /setup on first run
 
-# Or: app on host, DB in Docker
+# Or: app on host, DB in Docker (faster iteration / hot reload)
 docker compose up -d db
 export DATABASE_URL=postgresql+asyncpg://gatekeeper:gatekeeper@localhost:5432/gatekeeper
-export SKIP_SECURITY_CHECKS=1
+export SKIP_SECURITY_CHECKS=1   # silences secret key warning in dev
 uv run uvicorn app.main:app --reload
 ```
 
@@ -336,6 +336,8 @@ API routers: raise `HTTPException` with appropriate status codes:
 - [ ] Pydantic schema added/updated
 - [ ] `CHANGELOG.md` updated
 - [ ] All 303+ tests still pass
+- [ ] Docker rebuilt and started cleanly: `docker compose build app && docker compose up -d app && docker compose logs app --tail=20`
+- [ ] Smoke test: visit the changed page in browser and confirm it loads
 - [ ] **Help section reviewed** — if the feature adds or changes UI, update `app/templates/help/index.html` to reflect it
 - [ ] **VISION.md reviewed** — if the feature affects product direction, roadmap status, or Core/Pro boundaries, update `VISION.md` to reflect it
 
